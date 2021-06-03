@@ -15,5 +15,6 @@ A CNN based drawing recognition model which will take a handmade drawing as inpu
  * Front end: Html,CSS,JS
  * Backend: Django
 
+dataset : https://github.com/googlecreativelab/quickdraw-dataset
 
 
