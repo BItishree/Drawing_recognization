@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Drawing APP</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles_draw.css' %}">
+    <script type="text/javascript" src="{% static 'draw.js' %}"></script>
+</head>
+
+<header>
+    Drawing App
+</header>
+
+<body>
+    <h1>Results</h1>
+    <div class="results">
+        {%if final_pred%}
+        <h2 style="color:red;">Looks like a(n) {{ final_pred }} ! </h2>
+        {%else%}
+         <h2 style="color:red;">Nothing to predict ! </h2>
+        {%endif%}
+    </div>
+</body>
+
+</html>

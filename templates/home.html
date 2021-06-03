@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drawing here</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'style_draw.css' %}">
+    <script type="text/javascript" src="{% static 'draw.js' %}"></script>
+</head>
+    <header>
+     Draw  here!!
+
+    </header>
+
+<body>
+    <form id = "myForm" action="{% url 'result' %}" method="POST" enctype="multipart/form-data">
+         {% csrf_token %}
+        <canvas id="canvas", name ="draw" width="400" height="400" style="border:8px solid; border-radius: 10px; cursor: crosshair;">
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+                drawCanvas();
+            });
+        </script>
+        </canvas>
+        <input type="hidden" id = 'url' name="url" value="">
+
+        <input type="submit" id = 'predict' value="Predict" onclick="return save();">
+
+    </form>
+<button id="clear_cnv" onclick="return clearCanvas();">Clear</button>
+
+ {%if final_pred%}
+    <h4>Result:</h4>
+    <div>
+
+        <h2 style="color:red;">Looks like a(n) {{ final_pred }} ! </h2>
+
+    </div>
+     {%else%}
+         <h2 style="color:red;">Nothing to predict ! </h2>
+        {%endif%}
+
+<script type="text/javascript">
+
+
+function clearCanvas() {
+  cnv = document.getElementById('canvas');
+    ctx = document.getElementById('canvas').getContext("2d");
+  ctx.beginPath();    // clear existing drawing paths
+  ctx.save();         // store the current transformation matrix
+
+  // Use the identity matrix while clearing the canvas
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.clearRect(0, 0, cnv.width, cnv.height);
+clickX = [];
+clickY = [];
+clickDrag = [];
+}
+
+</script>
+
+    </body>
+</html>
